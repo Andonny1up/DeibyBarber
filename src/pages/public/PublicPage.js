@@ -1,10 +1,13 @@
 import PublicHeader from "./PublicHeader";
+import HeroSection from "./HeroSection";
 
 const PublicPage = () => {
   return (
     <div>
       <PublicHeader/>
-      <h1>Public Page</h1>
+      <main>
+        <HeroSection/>
+      </main>
     </div>
   );
 }

@@ -6,6 +6,7 @@ const StyledContainer = styled.div`
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+    position: relative;
   
     @media (min-width: 576px) {
         max-width: 540px;
@@ -23,9 +24,9 @@ const StyledContainer = styled.div`
         max-width: 1140px;
     }`;
 
-const Container = ({ children }) => {
+const Container = ({ children, className}) => {
   return (
-    <StyledContainer>
+    <StyledContainer className={className}>
       {children}
     </StyledContainer>
   );

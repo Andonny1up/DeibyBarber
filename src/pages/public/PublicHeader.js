@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import logo from '../../assets/logo.svg';
 import Container from '../../components/Container';
 import DeibyLogo from '../../components/DeibyLogo';
 import BurgerButton from '../../components/BurgerButton';
+import NavMenu from '../../components/NavMenu';
 
 const StyledHeader = styled.header`
     position: fixed;
@@ -13,8 +13,13 @@ const StyledHeader = styled.header`
     text-align: center;
     z-index: 1000;
 `;
-const StiledContainerHeader = styled.div`
+const StyledContainerHeader = styled.div`
     padding: 0.9rem 0;
+    z-index: 1000;
+    position: relative;
+    background-color: ${props => props.theme.background[20]};
+`;
+const StyledContainer = styled(Container)`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,20 +33,13 @@ const PublicHeader = () => {
   
     return (
         <StyledHeader>
-            <Container>
-            <StiledContainerHeader>
-                <DeibyLogo />
-                <BurgerButton isActive={isActive} onClick={handleBurgerClick}/>
-            </StiledContainerHeader>
-            {/* <nav className="header_nav">
-                <ul className="header_nav-list">
-                    <li className="nav-item active"><a href="">Inicio</a></li>
-                    <li className="nav-item"><a href="">Servicios</a></li>
-                    <li className="nav-item"><a href="">Mangas</a></li>
-                    <li className="nav-item"><a href="">Contacto</a></li>
-                </ul>
-            </nav> */}
-            </Container>
+                <StyledContainerHeader>
+                <StyledContainer>
+                    <DeibyLogo />
+                    <BurgerButton isActive={isActive} onClick={handleBurgerClick}/>
+                </StyledContainer>    
+                </StyledContainerHeader>
+            <NavMenu isActive={isActive}/>
         </StyledHeader>
     );
 }
