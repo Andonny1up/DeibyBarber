@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import RotatingCircle from '../../components/RotatingCircle';
+import MainButton from '../../components/MainButton';
 
 const DivCarousel = styled.div`
     position: relative;
@@ -87,6 +88,7 @@ const HeroSection = () => {
                         { position: 'absolute', top: '10px', left: '-50px', transform: 'translateX(-50%)' }
 
                     } />
+                    <MainButton>Reservar</MainButton>
                 </CarouselContent>
                 <ProgressBar style={{ width: `${((currentImageIndex + 1) / 3) * 100}%` }} />
             </DivCarousel>

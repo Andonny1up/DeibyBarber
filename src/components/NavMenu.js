@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import NavItem from './NavItem';
 
@@ -23,15 +24,20 @@ const Nav = styled.nav`
     }
 `;
 
-const NavMenu = ({isActive}) => (
-  <Nav className={`${isActive ? 'active' : ''}`}>
+const NavMenu = ({isActive}) => {
+  const location = useLocation();
+  const { pathname } = location;
+  return (
+    <Nav className={`${isActive ? 'active' : ''}`}>
     <NavList>
-      <NavItem href="" isActive={true}>Inicio</NavItem>
-      <NavItem href="/login">Servicios</NavItem>
+      <NavItem href="/" isActive={pathname === '/'}>Inicio</NavItem>
+      <NavItem href="">Servicios</NavItem>
       <NavItem href="">Eventos</NavItem>
       <NavItem href="">Tienda</NavItem>
+      <NavItem href="/login" isActive={pathname === '/login'}>admin</NavItem>
     </NavList>
   </Nav>
-);
+  )
+};
 
 export default NavMenu;

@@ -9,7 +9,6 @@ const Line = styled.span`
 `;
 
 const BurgerMenu = styled.span`
-  margin-right: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

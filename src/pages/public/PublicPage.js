@@ -1,5 +1,6 @@
 import PublicHeader from "./PublicHeader";
 import HeroSection from "./HeroSection";
+import AboutSection from "./AboutSection";
 
 const PublicPage = () => {
   return (
@@ -7,6 +8,7 @@ const PublicPage = () => {
       <PublicHeader/>
       <main>
         <HeroSection/>
+        <AboutSection/>
       </main>
     </div>
   );

@@ -19,7 +19,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'October Crow', sans-serif;
     font-weight: normal;
   }
-
+  body{
+    background-color: ${props => props.theme.background[20]};
+    color: ${props => props.theme.text[20]};
+  }
   body * {
     transition: background-color 0.3s ease, color 0.3s ease;
   }
