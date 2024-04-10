@@ -8,7 +8,7 @@ const StyledNavItem = styled.li`
     }
 `;
 const StyledLink = styled.a`
-    font-family: "October Crow", sans-serif;
+    font-family: "Oswald", sans-serif;
     font-weight: 500;
     font-size: 1.5rem;
     display: block;

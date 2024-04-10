@@ -19,7 +19,7 @@ const rotationBack = keyframes`
 const RotatingCircle = styled.span`
     width: ${props => props.size || '48px'};
     height: ${props => props.size || '48px'};
-    border: ${props => props.borderWidth || '3px'} dotted ${props => props.theme.text[10]};
+    border: ${props => props.$borderwidth || '3px'} dotted ${props => props.theme.text[10]};
     border-style: solid solid dotted dotted;
     border-radius: 50%;
     display: inline-block;
@@ -36,7 +36,7 @@ const RotatingCircle = styled.span`
         top: 0;
         bottom: 0;
         margin: auto;
-        border: ${props => props.borderWidth || '3px'} dotted ${props => props.theme.primary[60]};
+        border: ${props => props.$borderwidth || '3px'} dotted ${props => props.theme.primary[60]};
         border-style: solid solid dotted;
         width: calc(${props => props.size || '48px'} / 2);
         height: calc(${props => props.size || '48px'} / 2);

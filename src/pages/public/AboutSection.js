@@ -41,13 +41,13 @@ const AboutSection = () => {
                 </PagraphInfo>
                 <InfoContainer>
                     <div>
-                        <Title3 class="title3 oswald-medium">Desde 2024</Title3>
+                        <Title3>Desde 2024</Title3>
                         <Pagraph>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe rerum debitis fugiat doloribu
                         </Pagraph>
                     </div>
                     <div>
-                        <Title3 class="title3 oswald-medium">+100 clientes</Title3>
+                        <Title3>+100 clientes</Title3>
                         <Pagraph>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe rerum debitis fugiat doloribu
                         </Pagraph>

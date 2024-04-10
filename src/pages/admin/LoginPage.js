@@ -6,6 +6,9 @@ import Container from '../../components/Container';
 import MainButton from '../../components/MainButton';
 import InputText from '../../components/InputText';
 import Title2 from '../../components/Title2';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Section = styled.section`
   margin-top: 6rem;
@@ -22,8 +25,30 @@ const StyledTitle = styled(Title2)`
   text-align: end;
   color: ${props => props.theme.primary[60]}
 `;
+const StyledError = styled.div`
+  color: ${props => props.theme.primary[60]};
+  padding: 0.5rem;
+`;
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const [errorMessages, setErrorMessages] = useState(null);
+
+  // funcion para enviar los datos del formulario
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      const response = await axios.post('http://localhost:8000/api/token/', values);
+      localStorage.setItem('access_token', response.data.access);
+      localStorage.setItem('refresh_token', response.data.refresh);
+      navigate('/admin');
+    } catch (error) {
+      setErrorMessages('Usuario o contraseña incorrectos');
+      console.error(error);
+    }
+    setSubmitting(false);
+  }
+
+  
   return (
     <div>
       <PublicHeader/>
@@ -35,18 +60,15 @@ const LoginPage = () => {
               username: Yup.string().required('Requerido'),
               password: Yup.string().required('Requerido')
             })}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
-            }}
+            onSubmit={handleSubmit}
           >
             <Card>
+              
               <Form>
-                <StyledTitle>Iniciar sesion</StyledTitle>
+                <StyledTitle>Iniciar sesión</StyledTitle>
                 <InputText name="username" label="Usuario" type="text" />
                 <InputText name="password" label="Contraseña" type="password" />
+                {errorMessages && <StyledError>{errorMessages}</StyledError>}
                 <MainButton type="submit">Iniciar sesión</MainButton>
               </Form>
             </Card>

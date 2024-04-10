@@ -16,8 +16,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-family: 'October Crow', sans-serif;
-    font-weight: normal;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
   }
   body{
     background-color: ${props => props.theme.background[20]};

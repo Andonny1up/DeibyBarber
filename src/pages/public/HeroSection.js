@@ -84,7 +84,7 @@ const HeroSection = () => {
                     <Pagraph >
                         El mejor lugar para tu corte de cabello (Página web en construcción)
                     </Pagraph >
-                    <RotatingCircle size="48px" borderWidth="4px" style={
+                    <RotatingCircle size="48px" $borderwidth="4px" style={
                         { position: 'absolute', top: '10px', left: '-50px', transform: 'translateX(-50%)' }
 
                     } />

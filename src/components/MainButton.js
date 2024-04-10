@@ -20,6 +20,7 @@ const StyledButton = styled.button`
 
 const StyledLink = styled.a`
     display: block;
+    width: fit-content;
     font-family: 'Oswald', sans-serif;
     font-size: 1rem;
     font-weight: 500;
@@ -39,13 +40,13 @@ const StyledLink = styled.a`
 const MainButton = ({ children, onClick, href, ...props }) => {
     if (href) {
         return (
-            <StyledLink href={href} className='icon-button' {...props}>
+            <StyledLink href={href} {...props}>
                 {children}
             </StyledLink>
         );
     }
     return (
-        <StyledButton  onClick={onClick} className='icon-button' {...props}>
+        <StyledButton  onClick={onClick} {...props}>
             {children}
         </StyledButton >
     );
