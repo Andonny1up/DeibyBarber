@@ -25,7 +25,27 @@ const theme = {
     10: '#ffffff',  //secondary
     20: '#f5f5f5', //ternary
     30: '#BBBBBB', //quaternary
-  }
+  },
+  success: {
+    50: '#fd3636',
+    60: '#EB1616',
+    70: '#c60f0f',
+  },
+  warning: {
+    50: '#f5cc00',
+    60: '#ffb60a',
+    70: '#e28900',
+  },
+  danger: {
+    50: '#fd3636',
+    60: '#EB1616',
+    70: '#c60f0f',
+  },
+  info: {
+    50: '#0aa1ff',
+    60: '#0078d4',
+    70: '#005fab',
+  },
 }
 
 const App = () => {
