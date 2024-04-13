@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState, useRef} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Pagination from '../../../components/Pagination';
@@ -47,12 +47,12 @@ const UsersList = () => {
     const [PageSize, setPageSize] = useState(10);
     const [Search, setSearch] = useState('');
     const navigate = useNavigate();
-    let pageSize = 10;
-    let pass = true
+    const pageSizeRef = useRef(10);
 
-    const getUsers = async (url = 'http://localhost:8000/api/users/') => {
+    const getUsers = useCallback(
+        async (url = 'http://localhost:8000/api/users/') => {
         try{
-            pass = await checkAuth();
+            const pass = await checkAuth();
             console.log(pass);
             if (!pass) {
                 navigate('/login');
@@ -67,7 +67,7 @@ const UsersList = () => {
             let params = new URLSearchParams(aux.search);
             let currentPage = params.get('page');
             if (params.get('page_size')) {
-                pageSize = params.get('page_size');
+                pageSizeRef.current = params.get('page_size');
             }
             if (currentPage == null) {
                 currentPage = 1;
@@ -76,13 +76,13 @@ const UsersList = () => {
             setUsers(response.data.results);
             setNextPage(response.data.next);
             setPreviousPage(response.data.previous);
-            let totalPages = Math.ceil(response.data.count / pageSize);
+            let totalPages = Math.ceil(response.data.count / pageSizeRef.current);
             setTotalPages(totalPages);
             console.log(response.data);
         }catch(error){
             console.log(error);
         }
-    };
+    },[navigate]);
 
     const handlePageChange = (newPage) =>{
         if (newPage === 'next' && nextPage) {
@@ -93,12 +93,11 @@ const UsersList = () => {
     }
 
     const handlePageSizeChange = (newPageSize) => {
-        pageSize = newPageSize;
         setPageSize(newPageSize);
         if (Search.length >= 3) {
             getUsers(`http://localhost:8000/api/users/?page_size=${newPageSize}&search=${Search}`);
         }else{
-        getUsers(`http://localhost:8000/api/users/?page_size=${newPageSize}`);
+            getUsers(`http://localhost:8000/api/users/?page_size=${newPageSize}`);
         }
     };
 
@@ -115,7 +114,7 @@ const UsersList = () => {
 
     useEffect(() => {
         getUsers();
-    },[]);
+    },[getUsers]);
 
     return (
         <ContainerDiv>
@@ -147,9 +146,10 @@ const UsersList = () => {
                             <Td>{user.is_active ? 'Si' : 'No'}</Td>
                             <TdActions>
                                 <ActionButton/>
-                                <ActionButton type={'view'} href={'admin/users/details'}/>
+                                <ActionButton type={'view'} href={`users/details/${user.id}`}/>
                                 <ActionButton type={'edit'} />
                                 <ActionButton type={'delete'}/>
+                            
                             </TdActions>
                         </tr>
                     ))}
