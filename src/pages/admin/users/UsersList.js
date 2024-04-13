@@ -4,6 +4,7 @@ import axios from 'axios';
 import Pagination from '../../../components/Pagination';
 import ActionButton from '../../../components/ActionButton';
 import PageSizeSelector from '../../../components/PageSizeSelector';
+import SearchInput from '../../../components/SearchInput';
 import { checkAuth } from '../../../services/authService';
 import { useNavigate } from 'react-router-dom';
 
@@ -43,6 +44,8 @@ const UsersList = () => {
     const [previousPage, setPreviousPage] = useState(null);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
+    const [PageSize, setPageSize] = useState(10);
+    const [Search, setSearch] = useState('');
     const navigate = useNavigate();
     let pageSize = 10;
     let pass = true
@@ -91,8 +94,24 @@ const UsersList = () => {
 
     const handlePageSizeChange = (newPageSize) => {
         pageSize = newPageSize;
+        setPageSize(newPageSize);
+        if (Search.length >= 3) {
+            getUsers(`http://localhost:8000/api/users/?page_size=${newPageSize}&search=${Search}`);
+        }else{
         getUsers(`http://localhost:8000/api/users/?page_size=${newPageSize}`);
+        }
     };
+
+    const handleSearchChange = (search) => {
+        if(search.length >= 3){
+            setSearch(search);
+            if (PageSize !== 10) {
+                getUsers(`http://localhost:8000/api/users/?page_size=${PageSize}&search=${search}`);
+            }else{
+                getUsers(`http://localhost:8000/api/users/?search=${search}`);
+            }
+        }
+    }
 
     useEffect(() => {
         getUsers();
@@ -100,6 +119,7 @@ const UsersList = () => {
 
     return (
         <ContainerDiv>
+            <SearchInput onChange={handleSearchChange}/>
             <ContainerOptions>
             <Pagination onPageChange={handlePageChange} next={nextPage} previous={previousPage}
                 total={totalPages} current={currentPage}
