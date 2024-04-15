@@ -34,11 +34,11 @@ const StyledError = styled(ErrorMessage)`
 const Group = styled.div`
     margin-bottom: 1rem;
 `;
-const InputText = ({ name, label, type = 'text' }) => {
+const InputText = ({ name, label, type = 'text'}) => {
   return (
     <Group>
       <StyledLabel htmlFor={name}>{label}</StyledLabel>
-      <StyledField  name={name} type={type} />
+      <StyledField  name={name} type={type}/>
       <StyledError name={name} component="div" />
     </Group>
   );

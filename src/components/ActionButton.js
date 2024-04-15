@@ -12,6 +12,14 @@ const StyledLink = styled.a`
     border-radius: 0.25rem;
     cursor: pointer;
 
+    &.add{
+        color: white;
+        background-color: ${props => props.theme.success[60]};
+    }
+    &.add:hover{
+        color: white;
+        background-color: ${props => props.theme.success[50]};
+    }
 
     &.view {
         color: white;
@@ -37,6 +45,10 @@ const StyledLink = styled.a`
     &.delete:hover {
         color: white;
         background-color: ${props => props.theme.danger[50]};
+    }
+    &.md{
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
     }
 `;
 const StyledButton = styled.button`
@@ -49,6 +61,15 @@ const StyledButton = styled.button`
     border-radius: 0.25rem;
     cursor: pointer;
 
+    &.add{
+        color: white;
+        background-color: ${props => props.theme.success[60]};
+    }
+    &.add:hover{
+        color: white;
+        background-color: ${props => props.theme.success[50]};
+    }
+    
     &.view {
         color: white;
         background-color: ${props => props.theme.warning[60]};
@@ -74,11 +95,15 @@ const StyledButton = styled.button`
         color: white;
         background-color: ${props => props.theme.danger[50]};
     }
+    &.md{
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
 `;
 const StyledSpan = styled.span`
     font-size: 1rem;
     margin-right: 0;
-    
+
     @media (min-width: 576px) {
         margin-right: 0.25rem;
     }
@@ -92,9 +117,12 @@ const SpanText = styled.span`
 `;
 
 
-const ActionButton = ({ onClick,type, href,icon, text }) => {
+const ActionButton = ({ onClick,type, href,icon, text, size }) => {
     if (!icon) {
         switch (type) {
+            case 'add':
+              icon = 'add_circle';
+              break;
             case 'view':
               icon = 'visibility';
               break;
@@ -111,6 +139,9 @@ const ActionButton = ({ onClick,type, href,icon, text }) => {
     }
     if (!text) {
         switch (type) {
+            case 'add':
+              text = 'Crear';
+              break;
             case 'view':
               text = 'Ver';
               break;
@@ -128,8 +159,8 @@ const ActionButton = ({ onClick,type, href,icon, text }) => {
 
     if (href) {
         return (
-            <StyledLink  href={href} className={`${ type ? type : '' }`}>
-                <StyledSpan className="material-icons-round">
+            <StyledLink  href={href} className={`${ type ? type : '' } ${ size ? size : '' }`}>
+                <StyledSpan className={`material-icons-round ${ size ? size : '' }`}>
                     {icon}
                 </StyledSpan>
                 <SpanText>
@@ -139,8 +170,8 @@ const ActionButton = ({ onClick,type, href,icon, text }) => {
         )
     }
     return (
-        <StyledButton onClick={onClick} className={`${ type ? type : '' }`}>
-            <StyledSpan className="material-icons-round">
+        <StyledButton onClick={onClick} className={`${ type ? type : '' } ${ size ? size : '' }`}>
+            <StyledSpan className={`material-icons-round ${ size ? size : '' }`}>
                 {icon}
             </StyledSpan>
             <SpanText>

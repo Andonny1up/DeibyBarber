@@ -27,9 +27,9 @@ const theme = {
     30: '#BBBBBB', //quaternary
   },
   success: {
-    50: '#fd3636',
-    60: '#EB1616',
-    70: '#c60f0f',
+    50: '#43e5a0',
+    60: '#1acd81',
+    70: '#0fa968',
   },
   warning: {
     50: '#f5cc00',

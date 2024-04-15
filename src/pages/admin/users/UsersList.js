@@ -145,11 +145,9 @@ const UsersList = () => {
                             <Td>{user.email}</Td>
                             <Td>{user.is_active ? 'Si' : 'No'}</Td>
                             <TdActions>
-                                <ActionButton/>
                                 <ActionButton type={'view'} href={`users/details/${user.id}`}/>
-                                <ActionButton type={'edit'} />
+                                <ActionButton type={'edit'} href={`users/edit/${user.id}`}/>
                                 <ActionButton type={'delete'}/>
-                            
                             </TdActions>
                         </tr>
                     ))}

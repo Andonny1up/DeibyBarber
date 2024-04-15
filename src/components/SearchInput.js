@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 const ContainerInput = styled.div`
@@ -19,13 +20,15 @@ const Input = styled.input`
   font-size: 1rem;
   color: ${props => props.theme.text[10]};
   background-color: transparent;
-  
-  margin-right: 0.5rem;
-
-  
 `;
 
 const SearchInput = ({ value, onChange }) => {
+  const inputRef = useRef();
+
+  const handleFocus = () => {
+    inputRef.current.focus();
+  }
+  
   return (
     <ContainerInput>
       <Input
@@ -33,8 +36,9 @@ const SearchInput = ({ value, onChange }) => {
         value={value}
         onChange={ e => onChange(e.target.value)}
         placeholder="Buscar"
+        ref={inputRef}
       />
-      <span className="material-icons-round">
+      <span className="material-icons-round" onClick={handleFocus}>
         search
       </span>
     </ContainerInput>
