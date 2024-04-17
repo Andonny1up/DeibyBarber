@@ -12,6 +12,7 @@ import * as Yup from "yup"
 import { useParams ,useNavigate } from "react-router-dom"
 import { checkAuth } from "../../../services/authService"
 import axios from "axios"
+import SelectApi from "../../../components/Select"
 
 const UsersEdit = () => {
     const { id } = useParams();
@@ -63,6 +64,9 @@ const UsersEdit = () => {
             formData.append('email', values.email);
             formData.append('phone', values.phone);
             formData.append('is_active', values.isActive);
+            if (values.groupId){
+                formData.append('groups',values.groupId);
+            }
             if(values.userProfile){
                 formData.append('profile_picture', values.userProfile);
             }
@@ -104,10 +108,12 @@ const UsersEdit = () => {
                         username: user.username ? user.username : '',
                         firstName: user.first_name ? user.first_name :'',
                         lastName: user.last_name ? user.last_name :'',
+                        groupId:user.groups.length > 0 ? user.groups[0].id :'',
                         email: user.email ? user.email :'',
                         phone: user.phone ? user.phone :'',
                         birthdate: user.birthdate ? user.birthdate :'',
                         isActive: user.is_active,
+
                     }}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
@@ -121,6 +127,12 @@ const UsersEdit = () => {
                             <InputText name="username" label="Nombre De Usuario" type="text"/>
                             <InputText name="firstName" label="Nombres" type="text" value={user.first_name} />
                             <InputText name="lastName" label="Apellidos" type="text" value={user.last_name} />
+                            <SelectApi
+                                name="groupId"
+                                label="Grupo"
+                                apiURL="http://localhost:8000/api/groups/"
+                                transformData={data => data.map(group => ({ value: group.id, label: group.name }))}
+                            />
                             <InputText name="email" label="Correo Electrónico" type="email" value={user.email} />
                             <InputText name="phone" label="Teléfono" type="text" value={user.phone} />
                             <InputText name="birthdate" label="Fecha de Nacimiento" type="date" value={user.birthdate} />
