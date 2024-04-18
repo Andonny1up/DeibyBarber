@@ -11,7 +11,7 @@ import { checkAuth } from "../../../services/authService"
 import CheckboxGroup from "../../../components/CheckboxGroup"
 import axios from "axios"
 
-const GroupsCreate = () => {
+const PermissionsCreate = () => {
     const validationSchema = Yup.object().shape({
         name: Yup.string().required('El nombre es requerido'),
     });
@@ -81,4 +81,4 @@ const GroupsCreate = () => {
     )
 }
 
-export default GroupsCreate
+export default PermissionsCreate

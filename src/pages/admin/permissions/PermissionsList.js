@@ -39,7 +39,7 @@ const ContainerOptions = styled.div`
     align-items: center;
 `;
 
-const GroupsList = () => {
+const PermissionsList = () => {
     const [data, setData] = useState([]);
     const [nextPage, setNextPage] = useState(null);
     const [previousPage, setPreviousPage] = useState(null);
@@ -70,7 +70,7 @@ const GroupsList = () => {
                 navigate('/login');
                 return;
             }
-            const response = await axios.delete(`http://localhost:8000/api/groups/${GroupId}/`, {
+            const response = await axios.delete(`http://localhost:8000/api/permissions/${GroupId}/`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`
                 }
@@ -84,7 +84,7 @@ const GroupsList = () => {
     };
 
     const getData = useCallback(
-        async (url = 'http://localhost:8000/api/groups/') => {
+        async (url = 'http://localhost:8000/api/permissions/') => {
         try{
             const pass = await checkAuth();
             console.log(pass);
@@ -130,9 +130,9 @@ const GroupsList = () => {
         setPageSize(newPageSize);
         if (Search.length >= 3) {
             console.log(Search);
-            getData(`http://localhost:8000/api/groups/?page_size=${newPageSize}&search=${Search}`);
+            getData(`http://localhost:8000/api/permissions/?page_size=${newPageSize}&search=${Search}`);
         }else{
-            getData(`http://localhost:8000/api/groups/?page_size=${newPageSize}`);
+            getData(`http://localhost:8000/api/permissions/?page_size=${newPageSize}`);
         }
     };
 
@@ -140,16 +140,16 @@ const GroupsList = () => {
         if(search.length >= 3){
             setSearch(search);
             if (PageSize !== 10) {
-                getData(`http://localhost:8000/api/groups/?page_size=${PageSize}&search=${search}`);
+                getData(`http://localhost:8000/api/permissions/?page_size=${PageSize}&search=${search}`);
             }else{
-                getData(`http://localhost:8000/api/groups/?search=${search}`);
+                getData(`http://localhost:8000/api/permissions/?search=${search}`);
             }
         }else if(search.length === 0){
             setSearch(search);
             if (PageSize !== 10) {
-                getData(`http://localhost:8000/api/groups/?page_size=${PageSize}`);
+                getData(`http://localhost:8000/api/permissions/?page_size=${PageSize}`);
             }else{
-                getData(`http://localhost:8000/api/groups/`);
+                getData(`http://localhost:8000/api/permissions/`);
             }
         }
     }
@@ -171,20 +171,28 @@ const GroupsList = () => {
                 <thead>
                     <tr>
                         <Th>N°</Th>
+                        <Th>Tabla</Th>
                         <Th>Nombre</Th>
+                        <Th>Codigo</Th>
                         <Th>Acciones</Th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((group,index) => (
-                        <tr key={group.id}>
+                    {data.map((permission,index) => (
+                        <tr key={permission.id}>
                             <Td>{index + 1}</Td >
                             <Td>
-                                {group.name}
+                                {permission.content_type_name}
+                            </Td>
+                            <Td>
+                                {permission.name}
+                            </Td>
+                            <Td>
+                                {permission.codename}
                             </Td>
                             <TdActions>
-                                <ActionButton type={'edit'} href={`groups/edit/${group.id}`}/>
-                                <ActionButton type={'delete'} onClick={() => handleOpenModal(group.id)}/>
+                                <ActionButton type={'edit'} href={`groups/edit/${permission.id}`}/>
+                                <ActionButton type={'delete'} onClick={() => handleOpenModal(permission.id)}/>
                             </TdActions>
                         </tr>
                     ))}
@@ -194,4 +202,4 @@ const GroupsList = () => {
         </ContainerDiv>
     );
 }
-export default GroupsList;
+export default PermissionsList;

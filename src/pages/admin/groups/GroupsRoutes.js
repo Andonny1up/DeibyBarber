@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import GroupsPage from './GroupsPage';
 import GroupsCreate from './GroupsCreate';
+import GroupsEdit from './GroupsEdit';
 
 const GroupsRoutes = () => {
     return (
@@ -8,7 +9,7 @@ const GroupsRoutes = () => {
             <Routes>
                 <Route path="/" element={<GroupsPage/>} />
                 <Route path="add" element={<GroupsCreate/>} />
-                <Route path="/edit/:id" element={<h1>hola</h1>} />
+                <Route path="/edit/:id" element={<GroupsEdit/>} />
             </Routes>
         </main>
     );

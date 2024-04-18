@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react"
 import ContainerTop from "../../../components/ContainerTop"
 import Container from "../../../components/Container"
 import TitleIconPage from "../../../components/TitleIconPage"
@@ -6,17 +7,42 @@ import InputText from "../../../components/InputText"
 import MainButton from "../../../components/MainButton"
 import {Formik, Form} from 'formik';
 import * as Yup from "yup"
-import { useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { checkAuth } from "../../../services/authService"
 import CheckboxGroup from "../../../components/CheckboxGroup"
 import axios from "axios"
 
-const GroupsCreate = () => {
+const GroupsEdit = () => {
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [item, setItem] = useState(null);
+
     const validationSchema = Yup.object().shape({
         name: Yup.string().required('El nombre es requerido'),
     });
-    const navigate = useNavigate();
-    
+
+    useEffect(() => {
+        const getItem = async () => {
+            try {
+                const pass = await checkAuth();
+                if (!pass) {
+                    navigate('/login');
+                    return;
+                }
+                const response = await axios.get(`http://localhost:8000/api/groups/${id}/`,{
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                setItem(response.data);
+                console.log(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        getItem();
+    }, [id, navigate]);
+
     const handleSubmit = (values, { setSubmitting }) => {
         try {
             const pass = checkAuth();
@@ -31,7 +57,7 @@ const GroupsCreate = () => {
             }
             console.log(data);
 
-            const response = axios.post('http://localhost:8000/api/groups/', data,{
+            const response = axios.put(`http://localhost:8000/api/groups/${id}/`, data,{
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -47,6 +73,9 @@ const GroupsCreate = () => {
             setSubmitting(false);
         }
     };
+    if (!item) {
+        return <div>Cargando...</div>; // Puedes renderizar un componente de carga aquí
+    }
 
     return (
         <section>
@@ -56,8 +85,11 @@ const GroupsCreate = () => {
             <Container>
                 <Formik
                     initialValues={{
-                        name: '',
-                        permissions: [],
+                        name: item ? item.name :'',
+                        permissions: item ? item.permissions.reduce((obj, permissionId) => {
+                            obj[permissionId] = true;
+                            return obj;
+                          }, {}) : {},
                     }}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
@@ -81,4 +113,4 @@ const GroupsCreate = () => {
     )
 }
 
-export default GroupsCreate
+export default GroupsEdit
