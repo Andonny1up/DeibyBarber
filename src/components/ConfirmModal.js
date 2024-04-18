@@ -76,7 +76,7 @@ const StyledSpan = styled.span`
   margin-right: 0.5rem;
 `;
 
-const ConfirmModal = ({ isOpen, onClose, onConfirm, userId }) => {
+const ConfirmModal = ({ isOpen, onClose, onConfirm, itemId }) => {
   if (!isOpen) {
     return null;
   }
@@ -99,14 +99,14 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, userId }) => {
         </ModalHeader>
         
         <ModalBody>
-          <p>¿Estás seguro de que quieres eliminar al usuario {userId}?</p>
+          <p>¿Estás seguro de que quieres eliminar al usuario {itemId}?</p>
         </ModalBody>
 
         <ModalFooter>
           <ButtonCancel onClick={onClose}>
             Cancelar
           </ButtonCancel>
-          <ButtonConfirm onClick={() => onConfirm(userId)}>
+          <ButtonConfirm onClick={() => onConfirm(itemId)}>
             Eliminar
           </ButtonConfirm>
         </ModalFooter>

@@ -74,7 +74,7 @@ const UsersEdit = () => {
                 formData.append('birthdate', values.birthdate);
             }
             console.log(formData);
-            const response = axios.put(`http://localhost:8000/api/users/${id}/`, formData,{
+            const response = axios.patch(`http://localhost:8000/api/users/${id}/`, formData,{
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`

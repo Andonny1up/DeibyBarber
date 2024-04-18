@@ -11,7 +11,7 @@ const badge = {
     },
     // Badge success styles
     success: {
-        backgroundColor: '#28a745',
+        backgroundColor: '#1acd81',
     },
     // Badge danger styles
     danger: {

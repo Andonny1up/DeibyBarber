@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState, useRef} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import Badge from '../../../components/Badge';
 import Pagination from '../../../components/Pagination';
 import ActionButton from '../../../components/ActionButton';
 import PageSizeSelector from '../../../components/PageSizeSelector';
@@ -40,8 +39,8 @@ const ContainerOptions = styled.div`
     align-items: center;
 `;
 
-const UsersList = () => {
-    const [users, setUsers] = useState([]);
+const GroupsList = () => {
+    const [data, setData] = useState([]);
     const [nextPage, setNextPage] = useState(null);
     const [previousPage, setPreviousPage] = useState(null);
     const [totalPages, setTotalPages] = useState(0);
@@ -53,17 +52,17 @@ const UsersList = () => {
 
     // para eliminar un usuario
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [deleteUserId, setDeleteUserId] = useState(null);
+    const [deleteId, setDeleteId] = useState(null);
 
     const handleOpenModal = (id) => {
         setIsModalOpen(true);
-        setDeleteUserId(id);
+        setDeleteId(id);
     }
     const handleCloseModal = () => {
         setIsModalOpen(false);
-        setDeleteUserId(null);
+        setDeleteId(null);
     }
-    const handleConfirmDelete = async (userId) => {
+    const handleConfirmDelete = async (GroupId) => {
         try{
             const pass = await checkAuth();
             console.log(pass);
@@ -71,7 +70,7 @@ const UsersList = () => {
                 navigate('/login');
                 return;
             }
-            const response = await axios.delete(`http://localhost:8000/api/users/${userId}/`, {
+            const response = await axios.delete(`http://localhost:8000/api/groups/${GroupId}/`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`
                 }
@@ -84,8 +83,8 @@ const UsersList = () => {
         }
     };
 
-    const getUsers = useCallback(
-        async (url = 'http://localhost:8000/api/users/') => {
+    const getData = useCallback(
+        async (url = 'http://localhost:8000/api/groups/') => {
         try{
             const pass = await checkAuth();
             console.log(pass);
@@ -108,7 +107,7 @@ const UsersList = () => {
                 currentPage = 1;
             }
             setCurrentPage(currentPage);
-            setUsers(response.data.results);
+            setData(response.data.results);
             setNextPage(response.data.next);
             setPreviousPage(response.data.previous);
             let totalPages = Math.ceil(response.data.count / pageSizeRef.current);
@@ -121,9 +120,9 @@ const UsersList = () => {
 
     const handlePageChange = (newPage) =>{
         if (newPage === 'next' && nextPage) {
-            getUsers(nextPage);
+            getData(nextPage);
         }else if(newPage === 'previous' && previousPage){
-            getUsers(previousPage);
+            getData(previousPage);
         }
     }
 
@@ -131,9 +130,9 @@ const UsersList = () => {
         setPageSize(newPageSize);
         if (Search.length >= 3) {
             console.log(Search);
-            getUsers(`http://localhost:8000/api/users/?page_size=${newPageSize}&search=${Search}`);
+            getData(`http://localhost:8000/api/groups/?page_size=${newPageSize}&search=${Search}`);
         }else{
-            getUsers(`http://localhost:8000/api/users/?page_size=${newPageSize}`);
+            getData(`http://localhost:8000/api/groups/?page_size=${newPageSize}`);
         }
     };
 
@@ -141,23 +140,23 @@ const UsersList = () => {
         if(search.length >= 3){
             setSearch(search);
             if (PageSize !== 10) {
-                getUsers(`http://localhost:8000/api/users/?page_size=${PageSize}&search=${search}`);
+                getData(`http://localhost:8000/api/groups/?page_size=${PageSize}&search=${search}`);
             }else{
-                getUsers(`http://localhost:8000/api/users/?search=${search}`);
+                getData(`http://localhost:8000/api/groups?search=${search}`);
             }
         }else if(search.length === 0){
             setSearch(search);
             if (PageSize !== 10) {
-                getUsers(`http://localhost:8000/api/users/?page_size=${PageSize}`);
+                getData(`http://localhost:8000/api/groups/?page_size=${PageSize}`);
             }else{
-                getUsers(`http://localhost:8000/api/users/`);
+                getData(`http://localhost:8000/api/groups/`);
             }
         }
     }
 
     useEffect(() => {
-        getUsers();
-    },[getUsers]);
+        getData();
+    },[getData]);
 
     return (
         <ContainerDiv>
@@ -172,42 +171,27 @@ const UsersList = () => {
                 <thead>
                     <tr>
                         <Th>N°</Th>
-                        <Th>Nombre De Usuario</Th>
                         <Th>Nombre</Th>
-                        <Th>Grupo</Th>
-                        <Th>Correo</Th>
-                        <Th>Activo</Th>
                         <Th>Acciones</Th>
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((user,index) => (
-                        <tr key={user.id}>
+                    {data.map((group,index) => (
+                        <tr key={group.id}>
                             <Td>{index + 1}</Td >
                             <Td>
-                                <div style={{textAlign: 'end'}}>
-                                 
-                                </div>
-                                {user.username}
+                                {group.name}
                             </Td>
-                            <Td>{user.first_name} {user.last_name}</Td>
-                            <Td>
-                                {user.is_superuser ? <Badge text="@SUPERUSUARIO" type={'info'}/>:user.groups.length > 0? user.groups[0].name:'Ninguno'}
-                                
-                            </Td>
-                            <Td>{user.email}</Td>
-                            <Td style={{ textAlign: 'center'}}>{user.is_active ? <Badge text="Activo" type={'success'}/> : <Badge text="Inactivo" type={'danger'}/>}</Td>
                             <TdActions>
-                                <ActionButton type={'view'} href={`users/details/${user.id}`}/>
-                                <ActionButton type={'edit'} href={`users/edit/${user.id}`}/>
-                                <ActionButton type={'delete'} onClick={() => handleOpenModal(user.id)}/>
+                                <ActionButton type={'edit'} href={`groups/edit/${group.id}`}/>
+                                <ActionButton type={'delete'} onClick={() => handleOpenModal(group.id)}/>
                             </TdActions>
                         </tr>
                     ))}
                 </tbody>
             </Table>
-            <ConfirmModal isOpen={isModalOpen} onClose={handleCloseModal} onConfirm={handleConfirmDelete} itemId={deleteUserId}/>
+            <ConfirmModal isOpen={isModalOpen} onClose={handleCloseModal} onConfirm={handleConfirmDelete} itemId={deleteId}/>
         </ContainerDiv>
     );
 }
-export default UsersList;
+export default GroupsList;

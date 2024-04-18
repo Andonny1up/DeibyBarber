@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Field, ErrorMessage, useFormikContext } from 'formik';
+import { ErrorMessage, useFormikContext } from 'formik';
 import styled from 'styled-components';
 import ProfilePicture from './ProfilePicture';
 

@@ -62,7 +62,7 @@ const SelectApi = ({ name, label, apiURL, transformData }) => {
     };
 
     fetchOptions();
-  }, [apiURL, transformData]);
+  }, [apiURL, transformData,navigate]);
 
   return (
     <Group>
