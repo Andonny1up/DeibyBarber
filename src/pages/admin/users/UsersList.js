@@ -192,7 +192,7 @@ const UsersList = () => {
                             </Td>
                             <Td>{user.first_name} {user.last_name}</Td>
                             <Td>
-                                {user.is_superuser ? <Badge text="@SUPERUSUARIO" type={'info'}/>:user.groups.length > 0? user.groups[0].name:'Ninguno'}
+                                {user.is_superuser ? <Badge text="@SUPERUSUARIO" type={'info'}/>:user.groups.length > 0? user.groups_detail[0].name:'Ninguno'}
                                 
                             </Td>
                             <Td>{user.email}</Td>

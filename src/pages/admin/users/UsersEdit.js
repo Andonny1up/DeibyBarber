@@ -64,8 +64,9 @@ const UsersEdit = () => {
             formData.append('email', values.email);
             formData.append('phone', values.phone);
             formData.append('is_active', values.isActive);
+
             if (values.groupId){
-                formData.append('groups',values.groupId);
+                formData.append('groups', values.groupId);
             }
             if(values.userProfile){
                 formData.append('profile_picture', values.userProfile);
@@ -108,7 +109,7 @@ const UsersEdit = () => {
                         username: user.username ? user.username : '',
                         firstName: user.first_name ? user.first_name :'',
                         lastName: user.last_name ? user.last_name :'',
-                        groupId:user.groups.length > 0 ? user.groups[0].id :'',
+                        groupId:user.groups.length > 0 ? user.groups[0] :'',
                         email: user.email ? user.email :'',
                         phone: user.phone ? user.phone :'',
                         birthdate: user.birthdate ? user.birthdate :'',
@@ -130,7 +131,7 @@ const UsersEdit = () => {
                             <SelectApi
                                 name="groupId"
                                 label="Grupo"
-                                apiURL="http://localhost:8000/api/groups/"
+                                apiURL="http://localhost:8000/api/allgroups/"
                                 transformData={data => data.map(group => ({ value: group.id, label: group.name }))}
                             />
                             <InputText name="email" label="Correo Electrónico" type="email" value={user.email} />

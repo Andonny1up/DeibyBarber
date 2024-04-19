@@ -8,12 +8,16 @@ import {Formik, Form} from 'formik';
 import * as Yup from "yup"
 import { useNavigate } from "react-router-dom"
 import { checkAuth } from "../../../services/authService"
-import CheckboxGroup from "../../../components/CheckboxGroup"
 import axios from "axios"
+import SelectApi from "../../../components/Select"
 
 const PermissionsCreate = () => {
     const validationSchema = Yup.object().shape({
+        contentTypeId: Yup.string().required('La tabla es requerida'),
         name: Yup.string().required('El nombre es requerido'),
+        codeName: Yup.string().required('El codigo es requerido')
+        .test('no-space', 'El código no puede contener espacios', value => !/\s/.test(value))
+        ,
     });
     const navigate = useNavigate();
     
@@ -26,12 +30,13 @@ const PermissionsCreate = () => {
             }
             console.log(values);
             const data = {
+                content_type: values.contentTypeId,
                 name: values.name,
-                permissions: Object.keys(values.permissions).filter(key => values.permissions[key]),
+                codename: values.codeName,
             }
             console.log(data);
 
-            const response = axios.post('http://localhost:8000/api/groups/', data,{
+            const response = axios.post('http://localhost:8000/api/permissions/', data,{
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -40,7 +45,7 @@ const PermissionsCreate = () => {
             });
             console.log(response);
             setSubmitting(false);
-            navigate('/admin/groups');
+            navigate('/admin/permissions');
 
         } catch (error) {
             console.log(error);
@@ -51,13 +56,14 @@ const PermissionsCreate = () => {
     return (
         <section>
             <ContainerTop>
-                <TitleIconPage title="Nuevo Grupo" icon="group"/>
+                <TitleIconPage title="Nuevo Permiso" icon="vpn_key"/>
             </ContainerTop>
             <Container>
                 <Formik
                     initialValues={{
+                        contentTypeId: '',
                         name: '',
-                        permissions: [],
+                        codeName: '',
                     }}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
@@ -65,13 +71,14 @@ const PermissionsCreate = () => {
                 <Card>
                 
                 <Form>
-                    <InputText name="name" label="Nombre De Grupo" type="text" />
-                    <CheckboxGroup
-                    name="permissions"
-                    label="Permisos"
-                    apiURL="http://localhost:8000/api/all-permissions/"
-                    transformData={data => data.map(permission => ({ value: permission.id, label: permission.name }))}
+                    <SelectApi
+                        name="contentTypeId"
+                        label="Tabla"
+                        apiURL="http://localhost:8000/api/contenttypes/"
+                        transformData={data => data.map(contentType => ({ value: contentType.id, label: contentType.model }))}
                     />
+                    <InputText name="name" label="Nombre" type="text" />
+                    <InputText name="codeName" label="Codigo" type="text" />
                     <MainButton type="submit">Crear Grupo</MainButton>
                 </Form>
                 </Card>

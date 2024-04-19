@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Field } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { checkAuth } from '../services/authService';
@@ -35,6 +35,14 @@ const StyleOption = styled.option`
 `;
 const Group = styled.div`
   margin-bottom: 1rem;
+`;
+const StyledError = styled(ErrorMessage)`
+  display: flex;
+  justify-content: flex-end;
+  aling-items: center;
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
+  color: ${props => props.theme.primary[80]};
 `;
 
 const SelectApi = ({ name, label, apiURL, transformData }) => {
@@ -75,6 +83,7 @@ const SelectApi = ({ name, label, apiURL, transformData }) => {
           </StyleOption >
         ))}
       </Field>
+      <StyledError name={name} component="div" />
     </Group>
   );
 }

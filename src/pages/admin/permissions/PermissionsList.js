@@ -62,7 +62,7 @@ const PermissionsList = () => {
         setIsModalOpen(false);
         setDeleteId(null);
     }
-    const handleConfirmDelete = async (GroupId) => {
+    const handleConfirmDelete = async (permissionsId) => {
         try{
             const pass = await checkAuth();
             console.log(pass);
@@ -70,7 +70,7 @@ const PermissionsList = () => {
                 navigate('/login');
                 return;
             }
-            const response = await axios.delete(`http://localhost:8000/api/permissions/${GroupId}/`, {
+            const response = await axios.delete(`http://localhost:8000/api/permissions/${permissionsId}/`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`
                 }
