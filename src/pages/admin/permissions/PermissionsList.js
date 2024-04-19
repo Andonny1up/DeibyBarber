@@ -191,7 +191,7 @@ const PermissionsList = () => {
                                 {permission.codename}
                             </Td>
                             <TdActions>
-                                <ActionButton type={'edit'} href={`groups/edit/${permission.id}`}/>
+                                <ActionButton type={'edit'} href={`permissions/edit/${permission.id}`}/>
                                 <ActionButton type={'delete'} onClick={() => handleOpenModal(permission.id)}/>
                             </TdActions>
                         </tr>
