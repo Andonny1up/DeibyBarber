@@ -1,6 +1,7 @@
 import PublicHeader from "./PublicHeader";
 import HeroSection from "./HeroSection";
 import AboutSection from "./AboutSection";
+import PersonalSection from "./PersonalSection";
 
 const PublicPage = () => {
   return (
@@ -8,6 +9,7 @@ const PublicPage = () => {
       <PublicHeader/>
       <main>
         <HeroSection/>
+        <PersonalSection/>
         <AboutSection/>
       </main>
     </div>

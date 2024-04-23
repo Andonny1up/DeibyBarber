@@ -18,8 +18,10 @@ const theme = {
     80: '#a31111',
   },
   background: {
+    5: '#3d3d3d',
     10: '#2C2C2C',
     20: '#202020',
+    30: '#1A1A1A',
   },
   text: {
     10: '#ffffff',  //secondary

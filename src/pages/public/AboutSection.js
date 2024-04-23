@@ -9,10 +9,14 @@ const SectionContainer = styled.section`
 `;
 const PagraphInfo = styled.p`
     color: ${props => props.theme.text[30]};
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 500;
     margin-top: 1rem;
     margin-bottom: 2rem;
+
+    @media (min-width: 576px) {
+        font-size: 1.25rem;
+    }
 `;
 const Pagraph = styled.p`
     color: ${props => props.theme.text[30]};

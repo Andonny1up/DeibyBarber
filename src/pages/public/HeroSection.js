@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import RotatingCircle from '../../components/RotatingCircle';
 import MainButton from '../../components/MainButton';
+import Image1 from '../../assets/images/img1.jpg';
+import Image2 from '../../assets/images/img2.jpg';
+import Image3 from '../../assets/images/img3.jpg';
 
 const DivCarousel = styled.div`
     position: relative;
@@ -75,9 +78,9 @@ const HeroSection = () => {
     return (
         <section>
             <DivCarousel>
-                <CarouselImage className={currentImageIndex === 0 ? 'active' : ''} src="" alt="Imagen 1" />
-                <CarouselImage className={currentImageIndex === 1 ? 'active' : ''} src="" alt="Imagen 2" />
-                <CarouselImage className={currentImageIndex === 2 ? 'active' : ''} src="" alt="Imagen 3" />
+                <CarouselImage className={currentImageIndex === 0 ? 'active' : ''} src={Image1} alt="Imagen 1" />
+                <CarouselImage className={currentImageIndex === 1 ? 'active' : ''} src={Image2} alt="Imagen 2" />
+                <CarouselImage className={currentImageIndex === 2 ? 'active' : ''} src={Image3} alt="Imagen 3" />
                 <CarouselContent>
 
                     <Title > MANTENDREMOS TU LOOK IMPECABLE </Title>
