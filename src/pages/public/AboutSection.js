@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Container from "../../components/Container";
 import Title2 from "../../components/Title2";
 import Title3 from "../../components/Title3";
+import ProjectCard from "../../components/ProjectCard";
 
 const SectionContainer = styled.section`
     padding-top: 5rem;
@@ -22,12 +23,14 @@ const Pagraph = styled.p`
     color: ${props => props.theme.text[30]};
     line-height: 1.5;
     font-weight: 500;
+    margin-bottom: 2rem;
 `;
 
 const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 3rem;
+    margin-bottom: 2rem;
 
     @media (min-width: 768px) {
         flex-direction: row;
@@ -49,12 +52,14 @@ const AboutSection = () => {
                         <Pagraph>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe rerum debitis fugiat doloribu
                         </Pagraph>
+                        <ProjectCard />
                     </div>
                     <div>
                         <Title3>+100 clientes</Title3>
                         <Pagraph>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe rerum debitis fugiat doloribu
                         </Pagraph>
+                        <ProjectCard />
                     </div>
                 </InfoContainer>
             </Container>

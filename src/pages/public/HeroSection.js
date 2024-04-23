@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import RotatingCircle from '../../components/RotatingCircle';
+import { faWhatsapp} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MainButton from '../../components/MainButton';
 import Image1 from '../../assets/images/img1.jpg';
 import Image2 from '../../assets/images/img2.jpg';
@@ -9,8 +11,8 @@ import Image3 from '../../assets/images/img3.jpg';
 const DivCarousel = styled.div`
     position: relative;
     width: 100%;
-    height: 100vh;
     overflow: hidden;
+    height: 800px;
 
     &::after {
         content: "";
@@ -58,12 +60,24 @@ const CarouselContent = styled.div`
     color: ${props => props.theme.text[10]};
 `;
 const Title = styled.h1`
-    font-size: 2.5rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+
+    @media (min-width: 576px) {
+        font-size: 2rem;
+    }
+    @media (min-width: 768px) {
+        font-size: 2.5rem;
+    }
 `;
 const Pagraph = styled.p`
+    display: none;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
+    font-weight: 500;
     color: ${props => props.theme.text[30]};
+
+
 `;
 
 
@@ -76,22 +90,25 @@ const HeroSection = () => {
         return () => clearInterval(intervalId);
     }, []);
     return (
-        <section>
+        <section style={{padding: "0"}}>
             <DivCarousel>
                 <CarouselImage className={currentImageIndex === 0 ? 'active' : ''} src={Image1} alt="Imagen 1" />
                 <CarouselImage className={currentImageIndex === 1 ? 'active' : ''} src={Image2} alt="Imagen 2" />
                 <CarouselImage className={currentImageIndex === 2 ? 'active' : ''} src={Image3} alt="Imagen 3" />
                 <CarouselContent>
 
-                    <Title > MANTENDREMOS TU LOOK IMPECABLE </Title>
+                    <Title >¿Listo para un corte de cabello que resalte tu estilo y personalidad?</Title>
                     <Pagraph >
-                        El mejor lugar para tu corte de cabello (Página web en construcción)
+                    Mientras te relajas en la silla, puedes disfrutar de tus videojuegos, películas o series favoritas, ¡porque aquí la diversión y el estilo van de la mano!
                     </Pagraph >
-                    <RotatingCircle size="48px" $borderwidth="4px" style={
+                    {/* <RotatingCircle size="48px" $borderwidth="4px" style={
                         { position: 'absolute', top: '10px', left: '-50px', transform: 'translateX(-50%)' }
 
-                    } />
-                    <MainButton>Reservar</MainButton>
+                    } /> */}
+                    <MainButton href="/">
+                        <FontAwesomeIcon icon={faWhatsapp} style={{fontSize: "1.5rem"}} />
+                        Agendar cita
+                    </MainButton>
                 </CarouselContent>
                 <ProgressBar style={{ width: `${((currentImageIndex + 1) / 3) * 100}%` }} />
             </DivCarousel>

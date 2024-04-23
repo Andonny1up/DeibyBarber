@@ -6,11 +6,18 @@ import { faCut } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faWhatsapp, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import personal from '../../assets/images/personal2.jpg';
+import patron from '../../assets/images/patron.png';
+
 
 const StyledHero = styled.section`
   background-color: ${props => props.theme.background[20]};
+  background-image: url(${patron});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: ${props => props.theme.text[10]};
   padding: 0;
+  margin-top: 4rem;
 `;
 const StyledContainer = styled(Container)`
   padding-bottom: 2em;
@@ -18,6 +25,7 @@ const StyledContainer = styled(Container)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 
   @media (min-width: 768px) {
     flex-direction: row-reverse;
@@ -136,10 +144,6 @@ const PersonalSection = () => {
           <StyledP >
           Con más de 10 años de experiencia en el arte del corte de cabello, delineado de cejas y perfilado de barba, estoy aquí para ofrecerte una experiencia única y personalizada en cada visita a la barbería
           </StyledP >
-          {/* <MainButton>
-            <FontAwesomeIcon icon={faWhatsapp} />
-            Contáctame
-          </MainButton> */}
           <ContainerIconButtons>
             <IconButton icon={faWhatsapp} href='https://wa.me/59169404756?text=¡Hola!%20¿Cómo%20estás%3F.%20Quiero%20saber%20más%20sobre%20tus%20servicios%20de%20barbería.'
             target="_blank"/>

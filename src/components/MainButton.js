@@ -19,7 +19,10 @@ const StyledButton = styled.button`
 `;
 
 const StyledLink = styled.a`
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
     width: fit-content;
     font-family: 'Oswald', sans-serif;
     font-size: 1rem;
