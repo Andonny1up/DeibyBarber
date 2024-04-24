@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Container from "../../components/Container";
 import IconButton from "../../components/IconButton";
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faCut } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faWhatsapp, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

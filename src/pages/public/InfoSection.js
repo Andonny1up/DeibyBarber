@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import Container from "../../components/Container";
 import Fondo from "../../assets/images/fondo.jpg"
+import { faWhatsapp} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import MainButton from '../../components/MainButton';
 
 const StyledSection = styled.section`
     background-color: ${props => props.theme.background[20]};
@@ -10,26 +13,42 @@ const StyledSection = styled.section`
     background-blend-mode: overlay;
     background-attachment: fixed;
     padding: 3rem 0;
-    min-height: 100vh;
+    min-height: 500px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 const StyledContainer = styled(Container)`
-
+    max-width: 800px;
+`;
+const StyledH2 = styled.h2`
+    text-transform: uppercase;
+    font-weight: 700;
+`;
+const StyledP = styled.p`
+    color: ${props => props.theme.text[30]};
+`;
+const Pagraph = styled.p`
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: ${props => props.theme.text[30]};
 `;
 
 const InfoSection = () => {
     return (
         <StyledSection>
             <StyledContainer>
-                <h2>¿Listo para un corte de cabello que se adapte perfectamente a tu estilo y personalidad?</h2>
-                <p>
-                    Quiero brindarte una experiencia única y personalizada
-                    <br/>
-                    Mientras te relajas en la silla, puedes disfrutar de tus videojuegos, películas o series favoritas, ¡porque aquí la diversión y el estilo van de la mano!
-                </p>
+                <StyledH2>¿Estas Listo para hacer tu reserva?</StyledH2>
+                <StyledP >
+                Haz tu reserva hoy mismo y descubre por qué Deiby Barber es el destino preferido para aquellos que buscan lucir y sentirse increíbles.
+                Atención Solo con reserva de cita previa.
+                </StyledP>
+                <MainButton href='https://wa.me/59169404756?text=¡Hola!.%20Quiero%20Agendar%20una%20cita.' target="_blank">
+                    <FontAwesomeIcon icon={faWhatsapp} style={{fontSize: "1.5rem"}} />
+                    Agendar cita
+                </MainButton>
             </StyledContainer>
         </StyledSection>
     );

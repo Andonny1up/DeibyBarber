@@ -3,6 +3,8 @@ import Container from "../../components/Container";
 import Title2 from "../../components/Title2";
 import Title3 from "../../components/Title3";
 import ProjectCard from "../../components/ProjectCard";
+import Gif1 from "../../assets/gif/0423.gif";
+import Gif2 from "../../assets/gif/0424.gif";
 
 const SectionContainer = styled.section`
     padding-top: 5rem;
@@ -36,30 +38,51 @@ const InfoContainer = styled.div`
         flex-direction: row;
     }
 `;
+const DivLeft = styled.div`
+    display: flex;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+        flex-direction: row-reverse;
+    }
+`;
 const AboutSection = () => {
     return(
         <SectionContainer>
             <Container>
                 <Title2>Barberia profesional y tienda de mangas</Title2>
                 <PagraphInfo>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe rerum debitis fugiat doloribus
-                    sapiente
-                    odit ducimus neque excepturi, nostrum perferendis.
+                En Deiby Barber, nuestro objetivo es ofrecerte más que un simple corte de cabello: queremos brindarte una experiencia única y personalizada en cada visita a nuestra barbería.
                 </PagraphInfo>
                 <InfoContainer>
-                    <div>
-                        <Title3>Desde 2024</Title3>
+                    <DivLeft>
+                        
+                        <div>
+                        <ProjectCard image={Gif1}/>
+                        </div>
+                        <div>
+                        <Title3>Desde 2014</Title3>
                         <Pagraph>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe rerum debitis fugiat doloribu
+                        Con más de 10 años de experiencia en el mundo del estilismo masculino.
                         </Pagraph>
-                        <ProjectCard />
-                    </div>
-                    <div>
-                        <Title3>+100 clientes</Title3>
+                        </div>
+                    </DivLeft>
+                    <div style={
+                        {
+                            display: 'flex',
+                            gap: '2rem'
+                        }
+                    
+                    }>
+                        <div>
+                        <Title3>Diviértete</Title3>
                         <Pagraph>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe rerum debitis fugiat doloribu
+                        Mientras te relajas en la silla, puedes disfrutar de tus videojuegos, películas o series favoritas.
                         </Pagraph>
-                        <ProjectCard />
+                        </div>
+                        <div>
+                        <ProjectCard image={Gif2}/>
+                        </div>
                     </div>
                 </InfoContainer>
             </Container>

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import RotatingCircle from '../../components/RotatingCircle';
 import { faWhatsapp} from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MainButton from '../../components/MainButton';
@@ -40,7 +39,7 @@ const CarouselImage = styled.img`
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     object-fit: cover;
     filter: grayscale(100%);
@@ -71,13 +70,10 @@ const Title = styled.h1`
     }
 `;
 const Pagraph = styled.p`
-    display: none;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     font-weight: 500;
     color: ${props => props.theme.text[30]};
-
-
 `;
 
 
@@ -99,13 +95,9 @@ const HeroSection = () => {
 
                     <Title >¿Listo para un corte de cabello que resalte tu estilo y personalidad?</Title>
                     <Pagraph >
-                    Mientras te relajas en la silla, puedes disfrutar de tus videojuegos, películas o series favoritas, ¡porque aquí la diversión y el estilo van de la mano!
+                        Atención Solo con reserva de cita previa.
                     </Pagraph >
-                    {/* <RotatingCircle size="48px" $borderwidth="4px" style={
-                        { position: 'absolute', top: '10px', left: '-50px', transform: 'translateX(-50%)' }
-
-                    } /> */}
-                    <MainButton href="/">
+                    <MainButton href='https://wa.me/59169404756?text=¡Hola!.%20Quiero%20Agendar%20una%20cita.' target="_blank">
                         <FontAwesomeIcon icon={faWhatsapp} style={{fontSize: "1.5rem"}} />
                         Agendar cita
                     </MainButton>

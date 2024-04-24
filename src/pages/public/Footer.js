@@ -37,13 +37,25 @@ const ContainerIconButtons = styled.div`
   gap: 0.5rem;
   padding: 1rem 0;
 `;
+const StyledP = styled.p`
+    color: ${props => props.theme.text[30]};
+    text-align: start;
+    line-height: 1.7;
+`;
 
 const Footer = () => {
     return (
         <StyledFooter>
             <StyledContainer>
                 <div>
-                    <DeibyLogo />
+                    <DeibyLogo/>
+                    <StyledP>
+                        Avenida Ganadera una calle antes de Delipark,
+                        <br/>
+                        mano izquierda última casa.
+                        <br/>
+                        Trinidad, Bolivia
+                    </StyledP>
                     <ContainerIconButtons>
                         <IconButton icon={faWhatsapp} typeSize="small" 
                         href='https://wa.me/59169404756?text=¡Hola!%20¿Cómo%20estás%3F.%20Quiero%20saber%20más%20sobre%20tus%20servicios%20de%20barbería.'
