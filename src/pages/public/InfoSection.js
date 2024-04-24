@@ -29,12 +29,6 @@ const StyledH2 = styled.h2`
 const StyledP = styled.p`
     color: ${props => props.theme.text[30]};
 `;
-const Pagraph = styled.p`
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    color: ${props => props.theme.text[30]};
-`;
 
 const InfoSection = () => {
     return (
