@@ -11,9 +11,9 @@ const PublicPage = () => {
     <div>
       <PublicHeader/>
       <main>
+        <HeroSection/>
         <PersonalSection/>
         <AboutSection/>
-        <HeroSection/>
         <ServiceSection/>
         <InfoSection/>
       </main>

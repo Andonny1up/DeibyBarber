@@ -8,23 +8,17 @@ import Gif2 from "../../assets/gif/0424.gif";
 
 const SectionContainer = styled.section`
     padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-bottom: 0rem;
 `;
 const PagraphInfo = styled.p`
     color: ${props => props.theme.text[30]};
-    font-size: 1rem;
     font-weight: 500;
     margin-top: 1rem;
     margin-bottom: 2rem;
-
-    @media (min-width: 576px) {
-        font-size: 1.25rem;
-    }
 `;
 const Pagraph = styled.p`
     color: ${props => props.theme.text[30]};
     line-height: 1.5;
-    font-weight: 500;
     margin-bottom: 2rem;
 `;
 
@@ -50,7 +44,7 @@ const AboutSection = () => {
     return(
         <SectionContainer>
             <Container>
-                <Title2>Barberia profesional y tienda de mangas</Title2>
+                <Title2>Barberia</Title2>
                 <PagraphInfo>
                 En Deiby Barber, nuestro objetivo es ofrecerte más que un simple corte de cabello: queremos brindarte una experiencia única y personalizada en cada visita a nuestra barbería.
                 </PagraphInfo>

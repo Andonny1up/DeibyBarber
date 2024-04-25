@@ -39,7 +39,7 @@ const PublicHeader = () => {
                     <BurgerButton isActive={isActive} onClick={handleBurgerClick}/>
                 </StyledContainer>    
                 </StyledContainerHeader>
-            <NavMenu isActive={isActive}/>
+            <NavMenu isActive={isActive} setIsActive={setIsActive}/>
         </StyledHeader>
     );
 }

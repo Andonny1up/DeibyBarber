@@ -39,7 +39,7 @@ const InfoSection = () => {
                 Haz tu reserva hoy mismo y descubre por qué Deiby Barber es el destino preferido para aquellos que buscan lucir y sentirse increíbles.
                 Atención Solo con reserva de cita previa.
                 </StyledP>
-                <MainButton href='https://wa.me/59169404756?text=¡Hola!.%20Quiero%20Agendar%20una%20cita.' target="_blank">
+                <MainButton href='https://wa.me/59169404756?text=¡Hola!.%20Quiero%20Agendar%20una%20cita.%20¿Que%20horarios%20tienes%20disponibles?' target="_blank">
                     <FontAwesomeIcon icon={faWhatsapp} style={{fontSize: "1.5rem"}} />
                     Agendar cita
                 </MainButton>

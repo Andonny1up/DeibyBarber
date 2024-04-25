@@ -11,7 +11,7 @@ const StyledFooter = styled.footer`
 `;
 const StyledContainer = styled(Container)`
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding-top: 2rem;
     padding-bottom: 4rem;
@@ -41,13 +41,23 @@ const StyledP = styled.p`
     color: ${props => props.theme.text[30]};
     text-align: start;
     line-height: 1.7;
+    margin-top: 1rem;
+`;
+const DivLeft = styled.div`
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 576px) {
+        flex-direction: row;
+        gap: 2rem;
+        justify-content: space-between;
+    }
 `;
 
 const Footer = () => {
     return (
         <StyledFooter>
             <StyledContainer>
-                <div>
+                <DivLeft >
                     <DeibyLogo/>
                     <StyledP>
                         Avenida Ganadera una calle antes de Delipark,
@@ -67,7 +77,7 @@ const Footer = () => {
                         href='https://www.instagram.com/deiby_barbershop'
                         target="_blank"/>
                     </ContainerIconButtons>
-                </div>
+                </DivLeft>
                 <div>
 
                 </div>

@@ -10,6 +10,7 @@ import CutIcon from "../../assets/svg/cut.svg";
 const StyledSection = styled.section`
     background-color: ${props => props.theme.background[20]};
     padding: 3rem 0;
+    padding-top: 6rem;
 `;
 
 const StyledP = styled.p`
@@ -65,7 +66,7 @@ const IconImage = styled.img`
 
 const ServiceSection = () => {
     return (
-        <StyledSection>
+        <StyledSection id="service">
         <Container>
             <Title2> Servicios </Title2>
             <StyledP>

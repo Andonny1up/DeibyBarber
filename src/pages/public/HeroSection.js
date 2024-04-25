@@ -7,6 +7,11 @@ import Image1 from '../../assets/images/img1.jpg';
 import Image2 from '../../assets/images/img2.jpg';
 import Image3 from '../../assets/images/img3.jpg';
 
+const StyledHero = styled.section`
+    padding: 0;
+    margin-top: 4rem;
+`;
+
 const DivCarousel = styled.div`
     position: relative;
     width: 100%;
@@ -70,9 +75,6 @@ const Title = styled.h1`
     }
 `;
 const Pagraph = styled.p`
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
     color: ${props => props.theme.text[30]};
 `;
 
@@ -86,7 +88,7 @@ const HeroSection = () => {
         return () => clearInterval(intervalId);
     }, []);
     return (
-        <section style={{padding: "0"}}>
+        <StyledHero>
             <DivCarousel>
                 <CarouselImage className={currentImageIndex === 0 ? 'active' : ''} src={Image1} alt="Imagen 1" />
                 <CarouselImage className={currentImageIndex === 1 ? 'active' : ''} src={Image2} alt="Imagen 2" />
@@ -97,14 +99,14 @@ const HeroSection = () => {
                     <Pagraph >
                         Atención Solo con reserva de cita previa.
                     </Pagraph >
-                    <MainButton href='https://wa.me/59169404756?text=¡Hola!.%20Quiero%20Agendar%20una%20cita.' target="_blank">
+                    <MainButton href='https://wa.me/59169404756?text=¡Hola!.%20Quiero%20Agendar%20una%20cita.%20¿Que%20horarios%20tienes%20disponibles?' target="_blank">
                         <FontAwesomeIcon icon={faWhatsapp} style={{fontSize: "1.5rem"}} />
                         Agendar cita
                     </MainButton>
                 </CarouselContent>
                 <ProgressBar style={{ width: `${((currentImageIndex + 1) / 3) * 100}%` }} />
             </DivCarousel>
-        </section>
+        </StyledHero>
     );
 }
 

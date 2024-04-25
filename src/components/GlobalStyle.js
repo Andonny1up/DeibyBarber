@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Dagger Square', sans-serif;
   }
 
   h1 {
@@ -23,10 +23,12 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   p{
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: ${props => props.theme.text[10]};
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+
     @media (min-width: 576px) {
-      font-size: 1.25rem;
+      font-size: 1rem;
     }
   }
   body{

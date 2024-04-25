@@ -11,8 +11,17 @@ const StyledFigure = styled.figure`
     // }
 `;
 const StyledImg = styled.img`
-    width: 100%;
+    width: 100px;
     display: block;
+    @media (min-width: 576px) {
+        width: 150px;
+    }
+    @media (min-width: 768px) {
+        width: 100px;
+    }
+    @media (min-width: 992px) {
+        width: 150px;
+    }
 `;
 
 const ProjectCard = ({ image }) => {

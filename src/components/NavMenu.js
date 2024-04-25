@@ -24,16 +24,16 @@ const Nav = styled.nav`
     }
 `;
 
-const NavMenu = ({isActive}) => {
+const NavMenu = ({isActive,setIsActive}) => {
   const location = useLocation();
-  const { pathname } = location;
+  const { pathname, hash } = location;
   return (
     <Nav className={`${isActive ? 'active' : ''}`}>
-    <NavList>
-      <NavItem href="/" isActive={pathname === '/'}>Inicio</NavItem>
-      <NavItem href="">Servicios</NavItem>
-      <NavItem href="">Eventos</NavItem>
-      <NavItem href="">Tienda</NavItem>
+    <NavList onClick={() => setIsActive(false)}>
+      <NavItem href="/" isActive={pathname === '/' && hash !== '#service'}>Inicio</NavItem>
+      {pathname === '/' && <NavItem href="#service" isActive={hash === '#service'}>Servicios</NavItem>}
+      {/* <NavItem href="">Eventos</NavItem> */}
+      {/* <NavItem href="">Tienda</NavItem> */}
       <NavItem href="/login" isActive={pathname === '/login'}>admin</NavItem>
     </NavList>
   </Nav>

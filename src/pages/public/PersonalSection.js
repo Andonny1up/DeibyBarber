@@ -16,7 +16,7 @@ const StyledHero = styled.section`
   background-repeat: no-repeat;
   color: ${props => props.theme.text[10]};
   padding: 0;
-  margin-top: 4rem;
+  // margin-top: 4rem;
 `;
 const StyledContainer = styled(Container)`
   padding-bottom: 2em;
@@ -41,8 +41,16 @@ const ImageContainer = styled.div`
   position: relative;
 `;
 const StyledImg = styled.img`
-  width: 100%;
+  width: 300px;
   max-width: 25rem;
+
+  @media (min-width: 576px) {
+    width: 350px;
+  }
+
+  @media (min-width: 768px) {
+    width: 400px;
+  }
 `;
 
 const AnimatedText = styled.h1`
@@ -96,11 +104,11 @@ const TitleContainer = styled.div`
 `;
 const StyledP = styled.p`
   color: ${props => props.theme.text[10]};
-  font-family: 'Roboto' , sans-serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
   max-width: 30rem;
+
   @media (min-width: 576px) {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 `;
 const ContainerIconButtons = styled.div`
