@@ -3,7 +3,6 @@ import logo from '../assets/logo.svg';
 
 const LogoName = styled.span`
   display: block;
-  margin-left: 1rem;
   font-size: 2rem;
   font-family: "October Crow", sans-serif;
   font-optical-sizing: auto;
